@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Phishing Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .phishing {
+            color: #dc3545; /* أحمر */
+        }
+
+        .legitimate {
+            color: #28a745; /* أخضر */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Phishing Checker</h1>
+        <form method="POST">
+            <input type="text" name="url_input" placeholder="Enter URL here" required>
+            <br>
+            <button type="submit">Check</button>
+        </form>
+        {% if result %}
+            <div class="result {{ 'phishing' if 'Phishing' in result else 'legitimate' }}">
+                URL: {{ url_input }}<br>
+                Result: {{ result }} ({{ percent }}% likelihood of phishing)
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
